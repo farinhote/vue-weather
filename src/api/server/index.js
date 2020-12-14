@@ -9,15 +9,13 @@ axios.defaults.params['APPID'] = process.env.VUE_APP_API_KEY;
 
 export default {
   getWeather(params) {
-    // eslint-disable-next-line no-debugger
-    debugger;
     return axios
       .get(`${API_URL}${WEATHER}`, { params })
       .then((response) => response.data);
   },
-  getOneCallWeather(slug) {
+  getOneCallWeather(params) {
     return axios
-      .get(`${API_URL}${ONECALL}/${slug}`)
+      .get(`${API_URL}${ONECALL}`, { params })
       .then((response) => response.data);
   },
 };

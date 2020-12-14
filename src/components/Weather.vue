@@ -19,7 +19,7 @@ export default {
         coords: { latitude: lat, longitude: lon },
       } = geolocationPosition;
 
-      this.$store.commit("getWeatherByCoords", { lat, lon });
+      this.$store.dispatch("getWeatherByCoords", { lat, lon });
     },
   },
 };
