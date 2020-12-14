@@ -1,0 +1,25 @@
+$primary-color: #31312F;
+$secondary-color: #23b7e5;
+$accent-color: #DEAD4A;
+
+$font: Moon, Helvetica, sans-serif;
+$font-size: calc(3rem + 6vw);
+
+@mixin super-center() {
+  display: grid;
+  place-items: center;
+}
+
+@mixin button() {
+  font-size: calc(2vw + 1rem);
+  padding: 2vw;
+  cursor: pointer;
+}
+
+@mixin overlay() {
+  @include super-center();
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
