@@ -56,7 +56,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getWeatherByCoords({ commit }, coord) {
+    getWeather({ commit }, coord) {
       client.getWeather(coord)
         .then((response) => {
           const {

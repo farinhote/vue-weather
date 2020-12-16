@@ -1,16 +1,31 @@
 <template>
-  <div class="hello"></div>
+  <div class="wrapper">
+    <div class="current">
+      <Main />
+      <Secondary />
+    </div>
+  </div>
 </template>
 
 <script>
+import Main from "@/components/Main.vue";
+import Secondary from "@/components/Secondary.vue";
+
 export default {
   name: "Weather",
-  props: {
-    msg: String,
+  components: {
+    Main,
+    Secondary
   },
 
   created: function () {
     window.navigator.geolocation.getCurrentPosition(this.getWeatherByCoords);
+  },
+
+  computed: {
+    name() {
+      return this.$store.state.main.name;
+    },
   },
 
   methods: {
@@ -19,7 +34,7 @@ export default {
         coords: { latitude: lat, longitude: lon },
       } = geolocationPosition;
 
-      this.$store.dispatch("getWeatherByCoords", { lat, lon });
+      this.$store.dispatch("getWeather", { lat, lon });
     },
   },
 };
@@ -27,18 +42,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.current {
+  display: grid;
+  // For responsive design, will do 2 x 1 grid when width is over 1080px
+  grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+  height: Min(50vh, 50vw);
+  background-color: red;
 }
 </style>
