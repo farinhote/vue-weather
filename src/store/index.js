@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import client from 'api-client';
@@ -7,8 +6,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    forecast: [],
+    history: [],
     main: {},
-    secondary: {},
+    secondary: {}
   },
   mutations: {
     setMainWeather(state, [name, main, weather]) {
@@ -46,6 +47,12 @@ export default new Vuex.Store({
         sunset,
         windSpeed
       };
+    },
+    setForecast(state, forecast) {
+      state.forecast = forecast
+    },
+    setHistoryDay(state, [daily, index]) {
+      state.history[index] = daily;
     }
   },
   actions: {
@@ -58,13 +65,12 @@ export default new Vuex.Store({
             coord,
             weather,
             sys,
-            visibility,
-            wind,
-            rain
+            wind
           } = response;
           // Store actions are async by default
           const { lat, lon } = coord;
-          this.dispatch('getWeatherOneCall', { lat, lon });
+          this.dispatch('getForecast', { lat, lon });
+          this.dispatch('getHistorical', { lat, lon });
 
           commit("setMainWeather", [name, main, weather[0]]);
           commit("setSecondaryWeather", { main, sys, wind });
@@ -73,13 +79,30 @@ export default new Vuex.Store({
           console.log(error.statusText);
         });
     },
-    getWeatherOneCall({ commit }, coord) {
-      return client.getOneCallWeather(coord).then((response) => {
-        console.log(response);
-      })
+    getForecast({ commit }, coord) {
+      client.getOneCallWeather(coord)
+        .then((response) => {
+          commit("setForecast", response.daily);
+        })
         .catch((error) => {
           console.log(error.statusText);
         });
+    },
+    getHistorical({ commit }, coord) {
+      for (let index = 0; index < 5; index++) {
+        const date = new Date();
+        date.setDate(date.getDate() - index - 1)
+
+        const timestamp = Math.floor(date.getTime() / 1000);
+
+        client.getHistoricalOneCallWeather({ ...coord, dt: timestamp })
+          .then((response) => {
+            commit("setHistoryDay", [response.current, index]);
+          })
+          .catch((error) => {
+            console.log(error.statusText);
+          });
+      }
     },
   },
   modules: {
