@@ -1,6 +1,9 @@
 <template>
-  <div class="weather">
+  <div class="main">
     <span class="placeholder">{{main.name}}</span>
+    <span class="placeholder">{{main.name}}</span>
+    <span class="placeholder">{{main.name}}</span>
+    <img :src="require(source)" loading="lazy" />
   </div>
 </template>
 
@@ -13,12 +16,16 @@ export default {
     main() {
       return this.$store.state.main;
     },
+    source() {
+      return "../assets/sun.svg";
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.weather {
+.main {
   @include super-center();
+  grid-template-columns: 33% 66%;
 }
 </style>
