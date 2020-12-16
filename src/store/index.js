@@ -49,7 +49,7 @@ export default new Vuex.Store({
       };
     },
     setForecast(state, forecast) {
-      state.forecast = forecast
+      state.forecast = forecast;
     },
     setHistoryDay(state, [daily, index]) {
       state.history[index] = daily;
@@ -91,7 +91,7 @@ export default new Vuex.Store({
     getHistorical({ commit }, coord) {
       for (let index = 0; index < 5; index++) {
         const date = new Date();
-        date.setDate(date.getDate() - index - 1)
+        date.setDate(date.getDate() - index - 1);
 
         const timestamp = Math.floor(date.getTime() / 1000);
 
