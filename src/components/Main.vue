@@ -33,5 +33,6 @@ export default {
 
 img {
   max-width: 90%;
+  max-height: 90%;
 }
 </style>

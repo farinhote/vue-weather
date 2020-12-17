@@ -1,16 +1,39 @@
 <template>
   <div class="input-wrapper">
-    <input class="input-field" type="text" placeholder="Choose your Location" />
+    <input
+      @input="filterChange"
+      type="input"
+      class="input-field"
+      placeholder="Search location"
+      name="search"
+      id="search"
+      v-model="filter"
+    />
   </div>
 </template>
 
 <script>
+import { debounce } from "lodash";
+
 export default {
   name: "LocationInput",
 
+  methods: {
+    filterChange: debounce(function () {
+      this.$store.dispatch("getWeather", {
+        q: this.filter
+      });
+    }, 500),
+  },
+
   computed: {
-    main() {
-      return this.$store.state.main;
+    filter: {
+      get: function () {
+        return this.$store.state.filter;
+      },
+      set: function (newValue) {
+        this.$store.commit("setFilter", newValue);
+      },
     },
   },
 };
@@ -18,13 +41,17 @@ export default {
 
 <style scoped lang="scss">
 $input-background: rgba(57, 63, 84, 0.8);
-$input-text-inactive: #7881A1;
-$input-text-active: #BFD2FF;
+$input-text-inactive: #7881a1;
+$input-text-active: #bfd2ff;
 
 // gradient animation
 @keyframes gradient {
-  0%{background-position:0 0}
-  100%{background-position:100% 0}
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 .input-wrapper {
@@ -44,7 +71,15 @@ $input-text-active: #BFD2FF;
     bottom: 0px;
     height: 2px;
     background-position: 0% 0%;
-    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background: linear-gradient(
+      to right,
+      #b294ff,
+      #57e6e6,
+      #feffb8,
+      #57e6e6,
+      #b294ff,
+      #57e6e6
+    );
     background-size: 500% auto;
     animation: gradient 3s linear infinite;
   }

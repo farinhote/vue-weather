@@ -11,7 +11,8 @@ export default new Vuex.Store({
     history: [],
     main: {},
     secondary: {},
-    look: {}
+    look: {},
+    filter: ""
   },
   mutations: {
     setMainWeather(state, [name, main, weather]) {
@@ -57,6 +58,9 @@ export default new Vuex.Store({
     },
     setHistoryDay(state, [daily, index]) {
       state.history[index] = daily;
+    },
+    setFilter(state, filter) {
+      state.filter = filter;
     }
   },
   actions: {
