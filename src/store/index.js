@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import client from 'api-client';
+import { weatherStateHelper } from "@/helpers/weatherStateHelper.js"
 
 Vue.use(Vuex)
 
@@ -9,11 +10,12 @@ export default new Vuex.Store({
     forecast: [],
     history: [],
     main: {},
-    secondary: {}
+    secondary: {},
+    look: {}
   },
   mutations: {
     setMainWeather(state, [name, main, weather]) {
-      const { main: currentState, description } = weather;
+      const { main: currentState, description, icon } = weather;
       const {
         humidity,
         pressure,
@@ -28,12 +30,14 @@ export default new Vuex.Store({
         currentState,
         description,
         humidity,
+        icon,
         pressure,
         temp,
         tempMax,
         tempMin,
         feelsLike
       };
+      state.look = weatherStateHelper[icon];
     },
     setSecondaryWeather(state, { main, sys, wind }) {
       const { humidity, pressure } = main;

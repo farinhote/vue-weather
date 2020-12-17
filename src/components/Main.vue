@@ -3,7 +3,7 @@
     <span class="placeholder">{{main.name}}</span>
     <span class="placeholder">{{main.name}}</span>
     <span class="placeholder">{{main.name}}</span>
-    <img :src="require(source)" loading="lazy" />
+    <img :src="source" loading="lazy" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
       return this.$store.state.main;
     },
     source() {
-      return "../assets/sun.svg";
+      return this.$store.state.look.asset;
     },
   },
 };

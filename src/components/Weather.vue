@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <Location-input />
     <div class="current">
       <Main />
       <Secondary />
@@ -10,12 +11,14 @@
 <script>
 import Main from "@/components/Main.vue";
 import Secondary from "@/components/Secondary.vue";
+import LocationInput from "@/components/LocationInput.vue";
 
 export default {
   name: "Weather",
   components: {
     Main,
-    Secondary
+    Secondary,
+    LocationInput
   },
 
   created: function () {
@@ -42,6 +45,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.input-wrapper {
+  @include super-center();
+  height: 10vh;
+}
+
 .current {
   display: grid;
   // For responsive design, will do 2 x 1 grid when width is over 1080px
