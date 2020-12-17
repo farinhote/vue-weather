@@ -1,16 +1,18 @@
 <template>
   <div class="main">
     <span class="placeholder">{{main.name}}</span>
-    <span class="placeholder">{{main.name}}</span>
-    <span class="placeholder">{{main.name}}</span>
     <img :src="source" loading="lazy" />
+    <span class="placeholder">{{main.name}}</span>
+    <span class="placeholder">{{convertTemp(main.temp)}}</span>
   </div>
 </template>
 
 <script>
+import mixins from '@/mixins/mixins.js'
 
 export default {
   name: "Main",
+  mixins: [mixins],
 
   computed: {
     main() {
@@ -26,6 +28,10 @@ export default {
 <style scoped lang="scss">
 .main {
   @include super-center();
-  grid-template-columns: 33% 66%;
+  grid-template-columns: 66% 33%;
+}
+
+img {
+  max-width: 90%;
 }
 </style>
