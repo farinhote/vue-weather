@@ -55,7 +55,7 @@ export default {
   // For responsive design, will do 2 x 1 grid when width is over 1080px
   grid-template-columns: repeat(2, 1fr);
 
-  height: Min(50vh, 50vw);
+  height: 45vh;
 }
 
 @media (max-width: 1080px) {
