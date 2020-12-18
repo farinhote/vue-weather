@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <Location-input />
-    <div class="current">
+    <div class="current-weather">
       <Main />
       <Secondary />
     </div>
@@ -50,11 +50,10 @@ export default {
   height: 10vh;
 }
 
-.current {
+.current-weather {
   display: grid;
   // For responsive design, will do 2 x 1 grid when width is over 1080px
   grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
   height: Min(50vh, 50vw);
-  background-color: red;
 }
 </style>

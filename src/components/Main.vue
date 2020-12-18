@@ -1,14 +1,29 @@
 <template>
   <div class="main">
-    <span class="placeholder">{{main.name}}</span>
+    <div class="location">
+      <div class="name">{{ main.name }}</div>
+      <div class="description">{{ main.description }}</div>
+    </div>
     <img :src="source" loading="lazy" />
-    <span class="placeholder">{{main.name}}</span>
-    <span class="placeholder">{{convertTemp(main.temp)}}</span>
+    <div class="min-max">
+      <div class="min">
+        <div class="title">Min</div>
+        <div class="temperature">{{ convertTemp(main.tempMin, undefined, 0) }}</div>
+      </div>
+      <div class="max">
+        <div class="title">Max</div>
+        <div class="temperature">{{ convertTemp(main.tempMax, undefined, 0) }}</div>
+      </div>
+    </div>
+    <div class="current">
+      <div class="title">Current</div>
+      <div class="temperature">{{ convertTemp(main.temp) }}</div>
+    </div>
   </div>
 </template>
 
 <script>
-import mixins from '@/mixins/mixins.js'
+import mixins from "@/mixins/mixins.js";
 
 export default {
   name: "Main",
@@ -28,11 +43,51 @@ export default {
 <style scoped lang="scss">
 .main {
   @include super-center();
-  grid-template-columns: 66% 33%;
+  @include side-by-side();
+}
+
+.location {
+  @include super-center();
+  .name {
+    font-size: 1.6vw;
+  }
+  .description {
+    font-size: 2.4vw;
+  }
 }
 
 img {
   max-width: 90%;
   max-height: 90%;
+}
+
+.current {
+  .title {
+    font-size: 4vw;
+  }
+  .temperature {
+    font-size: 3.6vw;
+  }
+}
+
+.min-max {
+  @include side-by-side();
+  grid-gap: 2rem;
+  .title {
+    font-size: 3vw;
+  }
+  .temperature {
+    font-size: 2.6vw;
+  }
+  .max {
+    color: $max-color;
+  }
+  .min {
+    color: $min-color;
+  }
+}
+
+.title, .temperature {
+  @include super-center();
 }
 </style>
