@@ -49,10 +49,10 @@ export default {
 .location {
   @include super-center();
   .name {
-    font-size: 1.6vw;
+    @include font-size(1.6);
   }
   .description {
-    font-size: 2.4vw;
+    @include font-size(1.8);
   }
 }
 
@@ -63,10 +63,10 @@ img {
 
 .current {
   .title {
-    font-size: 4vw;
+    @include font-size(3);
   }
   .temperature {
-    font-size: 3.6vw;
+    @include font-size(2.6);
   }
 }
 
@@ -74,10 +74,10 @@ img {
   @include side-by-side();
   grid-gap: 2rem;
   .title {
-    font-size: 3vw;
+    @include font-size(2.6);
   }
   .temperature {
-    font-size: 2.6vw;
+    @include font-size(2.4);
   }
   .max {
     color: $max-color;

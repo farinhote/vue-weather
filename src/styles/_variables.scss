@@ -17,6 +17,12 @@ $font-size: calc(3rem + 6vw);
   grid-template-columns: 1fr 1fr;
 }
 
+@mixin font-size($font-size) {
+  $font-size-width: $font-size + 0vw;
+  $font-size-height: $font-size + 0vh;
+  font-size: calc(#{$font-size-width} + #{$font-size-height});
+}
+
 @mixin button() {
   font-size: calc(2vw + 1rem);
   padding: 2vw;

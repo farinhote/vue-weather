@@ -18,7 +18,7 @@ export default {
   components: {
     Main,
     Secondary,
-    LocationInput
+    LocationInput,
   },
 
   created: function () {
@@ -53,7 +53,14 @@ export default {
 .current-weather {
   display: grid;
   // For responsive design, will do 2 x 1 grid when width is over 1080px
-  grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+
   height: Min(50vh, 50vw);
+}
+
+@media (max-width: 1080px) {
+  .current-weather {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
