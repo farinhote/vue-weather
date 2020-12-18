@@ -1,6 +1,8 @@
 $primary-color: #31312F;
 $secondary-color: #23b7e5;
 $accent-color: #DEAD4A;
+$min-color: rgb(11, 11, 90);
+$max-color: rgb(65, 16, 16);
 
 $font: Moon, Helvetica, sans-serif;
 $font-size: calc(3rem + 6vw);
@@ -8,6 +10,11 @@ $font-size: calc(3rem + 6vw);
 @mixin super-center() {
   display: grid;
   place-items: center;
+}
+
+@mixin side-by-side() {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 @mixin button() {
