@@ -1,45 +1,42 @@
 <template>
-  <fragment>
-    <label :click="greet" for="toggle">Press for extra info</label>
+  <div class="wrapper">
     <input type="checkbox" id="toggle" />
-
-    <div class="secondary togglable">
-      <div class="cell wind">
-        <img
-          class="arrow"
-          :style="{ transform: 'rotate(' + windDeg + 'deg)' }"
-          src="@/assets/secondary/north.svg"
-          loading="lazy"
-        />
-        <div class="speed">Wind: {{ secondary.wind.speed }} km/h</div>
-      </div>
-      <div class="cell sunrise-set">
-        <img src="@/assets/secondary/sunrise.svg" loading="lazy" />
-        <div class="speed">Sunrise: {{ getHour(secondary.sunrise) }}</div>
-        <div class="speed">Sunset: {{ getHour(secondary.sunset) }}</div>
-      </div>
-      <div class="cell humidity">
-        <img src="@/assets/secondary/humidity.svg" loading="lazy" />
-        <div class="speed">Humidity: {{ secondary.humidity }}%</div>
-      </div>
-      <div class="cell pressure">
-        <img src="@/assets/secondary/barometer.svg" loading="lazy" />
-        <div class="speed">Pressure: {{ secondary.pressure }}hPa</div>
+    <label for="toggle">Press to toggle extra info</label>
+    <div class="togglable">
+      <div class="secondary">
+        <div class="cell wind">
+          <img
+            class="arrow"
+            :style="{ transform: 'rotate(' + windDeg + 'deg)' }"
+            src="@/assets/secondary/north.svg"
+            loading="lazy"
+          />
+          <div class="wind-label">Wind: {{ secondary.wind.speed }} km/h</div>
+        </div>
+        <div class="cell sunrise-set">
+          <img src="@/assets/secondary/sunrise.svg" loading="lazy" />
+          <div class="sunrise-label">Sunrise: {{ getHour(secondary.sunrise) }}</div>
+          <div class="sunset-label">Sunset: {{ getHour(secondary.sunset) }}</div>
+        </div>
+        <div class="cell humidity">
+          <img src="@/assets/secondary/humidity.svg" loading="lazy" />
+          <div class="humidity-label">Humidity: {{ secondary.humidity }}%</div>
+        </div>
+        <div class="cell pressure">
+          <img src="@/assets/secondary/barometer.svg" loading="lazy" />
+          <div class="pressure-label">Pressure: {{ secondary.pressure }}hPa</div>
+        </div>
       </div>
     </div>
-  </fragment>
+  </div>
 </template>
 
 <script>
-import { Fragment } from "vue-fragment";
 import mixins from "@/mixins/mixins.js";
 
 export default {
   name: "Secondary",
   mixins: [mixins],
-  components: {
-    Fragment,
-  },
 
   computed: {
     secondary() {
@@ -67,7 +64,8 @@ export default {
   text-align: center;
 }
 
-label, input {
+label,
+input {
   display: none;
 }
 
@@ -84,7 +82,6 @@ label, input {
   }
 
   #toggle ~ .togglable {
-    visibility: hidden;
     opacity: 0;
     height: 0vh;
 
@@ -92,9 +89,20 @@ label, input {
   }
 
   #toggle:checked ~ .togglable {
-    visibility: visible;
     opacity: 1;
     height: 100%;
+
+    transition-delay: 0s;
+  }
+
+  #toggle ~ label {
+    margin-bottom: 0;
+
+    transition: all 0.5s ease-in;
+  }
+
+  #toggle:checked ~ label {
+    margin-bottom: 2rem;
 
     transition-delay: 0s;
   }

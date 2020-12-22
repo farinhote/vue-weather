@@ -61,6 +61,7 @@ export default {
 @media (max-width: 1080px) {
   .current-weather {
     grid-template-columns: 1fr;
+    grid-gap: 2rem;
   }
 }
 </style>
