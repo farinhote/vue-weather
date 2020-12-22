@@ -48,6 +48,7 @@ export default {
 
 .location {
   @include super-center();
+  text-align: center;
   .name {
     @include font-size(1.6);
   }

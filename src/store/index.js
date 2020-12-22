@@ -18,11 +18,7 @@ export default new Vuex.Store({
     setMainWeather(state, [name, main, weather]) {
       const { main: currentState, description, icon } = weather;
       const {
-        humidity,
-        pressure,
         temp,
-        temp_max: tempMax,
-        temp_min: tempMin,
         feels_like: feelsLike
       } = main;
 
@@ -30,12 +26,8 @@ export default new Vuex.Store({
         name,
         currentState,
         description,
-        humidity,
         icon,
-        pressure,
         temp,
-        tempMax,
-        tempMin,
         feelsLike
       };
       state.look = weatherStateHelper[icon];
@@ -43,14 +35,13 @@ export default new Vuex.Store({
     setSecondaryWeather(state, { main, sys, wind }) {
       const { humidity, pressure } = main;
       const { sunrise, sunset } = sys;
-      const { speed: windSpeed } = wind;
 
       state.secondary = {
         humidity,
         pressure,
         sunrise,
         sunset,
-        windSpeed
+        wind
       };
     },
     setForecast(state, forecast) {
@@ -61,10 +52,23 @@ export default new Vuex.Store({
     },
     setFilter(state, filter) {
       state.filter = filter;
+    },
+    setCurrentMinMax(state, currentDay) {
+      const { min: tempMin, max: tempMax } = currentDay;
+
+      state.main = { ...state.main, tempMin, tempMax };
+    },
+    resetAll(state) {
+      state.main = {};
+      state.look = {};
+      state.secondary = {};
+      state.forecast = [];
+      state.history = [];
     }
   },
   actions: {
     getWeather({ commit }, coord) {
+      commit("resetAll");
       client.getWeather(coord)
         .then((response) => {
           const {
@@ -90,7 +94,10 @@ export default new Vuex.Store({
     getForecast({ commit }, coord) {
       client.getOneCallWeather(coord)
         .then((response) => {
+          const currentDay = response.daily.shift();
+
           commit("setForecast", response.daily);
+          commit("setCurrentMinMax", currentDay.temp);
         })
         .catch((error) => {
           console.log(error.statusText);

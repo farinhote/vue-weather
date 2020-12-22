@@ -1,10 +1,11 @@
 <template>
   <div class="wrapper">
     <Location-input />
-    <div class="current-weather">
+    <div v-if="name" class="current-weather">
       <Main />
       <Secondary />
     </div>
+    <div v-else class="loader"></div>
   </div>
 </template>
 
@@ -45,6 +46,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@include loading-spinner();
+
 .input-wrapper {
   @include super-center();
   height: 10vh;
@@ -52,10 +55,7 @@ export default {
 
 .current-weather {
   display: grid;
-  // For responsive design, will do 2 x 1 grid when width is over 1080px
   grid-template-columns: repeat(2, 1fr);
-
-  height: 45vh;
 }
 
 @media (max-width: 1080px) {
