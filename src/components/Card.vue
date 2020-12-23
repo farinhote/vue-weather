@@ -2,6 +2,7 @@
   <div class="card-wrapper">
     <div class="temp">{{ convertTemp(temp, undefined, 0) + "°" }}</div>
     <img :src="source" loading="lazy" />
+    <div class="weekday">{{ weekday }}</div>
   </div>
 </template>
 
@@ -22,6 +23,11 @@ export default {
     source: function () {
       return weatherStateHelper[this.weather.weather[0].icon].asset;
     },
+    weekday: function () {
+      return new Date(this.weather.dt * 1000).toLocaleDateString("en-US", {
+        weekday: "long",
+      });
+    },
   },
 
   mixins: [mixins],
@@ -37,6 +43,11 @@ export default {
 
 .temp {
   padding: 6px;
+}
+
+.weekday {
+  @include super-center();
+  @include font-size(0.5);
 }
 
 img {
