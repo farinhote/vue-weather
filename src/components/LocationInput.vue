@@ -55,12 +55,8 @@ $input-text-active: #bfd2ff;
 }
 
 .input-wrapper {
+  @include super-center();
   position: relative;
-  display: flex;
-  flex-direction: row;
-  max-width: 26rem;
-  margin: 0 auto;
-  border-radius: 2px;
   padding: 1rem;
   background: $input-background;
   &:after {
