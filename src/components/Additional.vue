@@ -1,7 +1,7 @@
 <template>
   <div class="card-lists">
-    <Card-list :list="history" />
-    <Card-list :list="forecast" />
+    <Card-list :list="history" :title="`Last 5 days`"/>
+    <Card-list :list="forecast" :title="`Forecast`" />
   </div>
 </template>
 

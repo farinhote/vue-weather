@@ -48,7 +48,7 @@ export default new Vuex.Store({
       state.forecast = forecast;
     },
     setHistoryDay(state, [daily, index]) {
-      state.history[index] = daily;
+      Vue.set(state.history, index, daily)
     },
     setFilter(state, filter) {
       state.filter = filter;

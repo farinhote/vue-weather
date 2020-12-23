@@ -61,6 +61,10 @@ export default {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.card-lists {
+  padding-top: 2rem;
+}
+
 @media (max-width: 1080px) {
   .current-weather {
     grid-template-columns: 1fr;
