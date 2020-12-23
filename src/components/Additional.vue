@@ -3,7 +3,7 @@
     <!-- Prevent undefined errors while still loading -->
     <Card-list v-if="forecast.length" :list="forecast" :title="`Forecast`" />
     <Card-list
-      v-if="history.length === 5"
+      v-if="historyInitializable"
       :list="history"
       :title="`Last 5 days`"
     />
@@ -27,6 +27,9 @@ export default {
     history() {
       return this.$store.state.history;
     },
+    historyInitializable(){
+      return this.history.filter(day => day).length === 5;
+    }
   },
 };
 </script>
