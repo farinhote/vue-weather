@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { debounce } from "lodash";
+import { debounce } from "@/helpers/debouncer.js"
 
 export default {
   name: "LocationInput",
