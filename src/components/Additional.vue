@@ -1,6 +1,7 @@
 <template>
   <div class="card-lists">
-    <Card-list :list="history" :title="`Last 5 days`"/>
+    <!-- Prevent undefined errors while still loading -->
+    <Card-list v-if="history.length === 5" :list="history" :title="`Last 5 days`"/>
     <Card-list :list="forecast" :title="`Forecast`" />
   </div>
 </template>

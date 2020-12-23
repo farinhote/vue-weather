@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrapper">
-    <div>{{ convertTemp(temp, undefined, 0) }}</div>
+    <div class="temp">{{ convertTemp(temp, undefined, 0) + "°" }}</div>
     <img :src="source" loading="lazy" />
   </div>
 </template>
@@ -33,6 +33,10 @@ export default {
   background-color: rgba(148, 148, 148, 0.507);
   margin: 3px;
   border-radius: 3px;
+}
+
+.temp {
+  padding: 6px;
 }
 
 img {
