@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <Location-input />
+    <Background />
     <div v-if="name" class="current-weather">
       <Main />
       <Secondary />
@@ -13,6 +14,7 @@
 import Main from "@/components/Main.vue";
 import Secondary from "@/components/Secondary.vue";
 import LocationInput from "@/components/LocationInput.vue";
+import Background from "@/components/Background.vue";
 
 export default {
   name: "Weather",
@@ -20,6 +22,7 @@ export default {
     Main,
     Secondary,
     LocationInput,
+    Background
   },
 
   created: function () {
@@ -47,11 +50,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @include loading-spinner();
-
-.input-wrapper {
-  @include super-center();
-  height: 10vh;
-}
 
 .current-weather {
   display: grid;

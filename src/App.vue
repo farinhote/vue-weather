@@ -13,7 +13,6 @@
 #app {
   font: 100% $font;
   color: $primary-color;
-  background-color: $secondary-color;
   min-height: 100vh;
 }
 

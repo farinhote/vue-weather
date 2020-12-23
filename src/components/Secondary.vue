@@ -81,6 +81,7 @@ input {
     width: 100vw;
   }
 
+  // This css toggle feels very dodgy but you asked to be surprised (:
   #toggle ~ .togglable {
     opacity: 0;
     height: 0vh;
