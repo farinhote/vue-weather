@@ -1,5 +1,5 @@
 <template>
-    <Weather />
+  <Weather />
 </template>
 
 <script>
@@ -9,6 +9,6 @@ export default {
   name: "Home",
   components: {
     Weather,
-  }
+  },
 };
 </script>
