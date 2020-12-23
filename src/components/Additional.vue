@@ -11,12 +11,13 @@
 </template>
 
 <script>
+
 import CardList from "@/components/CardList.vue";
 
 export default {
   name: "Additional",
   components: {
-    CardList,
+    CardList
   },
 
   computed: {
@@ -32,8 +33,14 @@ export default {
 
 <style scoped lang="scss">
 .card-lists {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 2rem;
+  @include super-center();
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1080px) {
+  .card-lists {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
 }
 </style>

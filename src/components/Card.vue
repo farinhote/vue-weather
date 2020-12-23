@@ -42,4 +42,11 @@ export default {
 img {
   @include super-center();
 }
+
+@media (min-width: 1080px) {
+  .card-wrapper {
+    height: 150px;
+    width: 100px;
+  }
+}
 </style>
