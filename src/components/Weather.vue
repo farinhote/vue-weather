@@ -9,7 +9,8 @@
     <div v-if="name" class="card-lists">
       <Additional />
     </div>
-    <div v-else class="loader"></div>
+    <div v-else-if="!invalidLocation" class="loader"></div>
+    <div v-if="invalidLocation" class="invalid-location">Choose a Location</div>
   </div>
 </template>
 
@@ -38,6 +39,9 @@ export default {
     name() {
       return this.$store.state.main.name;
     },
+    invalidLocation() {
+      return this.$store.state.invalidLocation;
+    },
   },
 
   methods: {
@@ -63,6 +67,13 @@ export default {
 
 .card-lists {
   padding-top: 2rem;
+}
+
+.invalid-location {
+  @include super-center();
+  @include font-size(2);
+
+  padding-top: 20vh;
 }
 
 @media (max-width: 1080px) {

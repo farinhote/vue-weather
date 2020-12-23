@@ -12,7 +12,8 @@ export default new Vuex.Store({
     main: {},
     secondary: {},
     look: {},
-    filter: ""
+    filter: "",
+    invalidLocation: true
   },
   mutations: {
     setMainWeather(state, [name, main, weather]) {
@@ -62,13 +63,17 @@ export default new Vuex.Store({
 
       state.main = { ...state.main, tempMin, tempMax };
     },
+    setInvalidLocation(state) {
+      state.invalidLocation = true;
+    },
     resetAll(state) {
       state.main = {};
       state.look = {};
       state.secondary = {};
       state.forecast = [];
       state.history = [];
-    }
+      state.invalidLocation = false;
+    },
   },
   actions: {
     getWeather({ commit }, coord) {
@@ -92,6 +97,7 @@ export default new Vuex.Store({
           commit("setSecondaryWeather", { main, sys, wind });
         })
         .catch((error) => {
+          commit("setInvalidLocation");
           console.log(error.statusText);
         });
     },
