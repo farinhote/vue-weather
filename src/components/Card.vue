@@ -36,8 +36,6 @@ export default {
 }
 
 img {
-  max-width: calc(100% -  1rem);
-  max-height: calc(100% -  1rem);
-  margin: auto 0;
+  @include super-center();
 }
 </style>
