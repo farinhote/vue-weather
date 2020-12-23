@@ -6,6 +6,9 @@
       <Main />
       <Secondary />
     </div>
+    <div v-if="name" class="card-lists">
+      <Additional />
+    </div>
     <div v-else class="loader"></div>
   </div>
 </template>
@@ -14,6 +17,7 @@
 import Main from "@/components/Main.vue";
 import Secondary from "@/components/Secondary.vue";
 import LocationInput from "@/components/LocationInput.vue";
+import Additional from "@/components/Additional.vue";
 import Background from "@/components/Background.vue";
 
 export default {
@@ -22,6 +26,7 @@ export default {
     Main,
     Secondary,
     LocationInput,
+    Additional,
     Background
   },
 

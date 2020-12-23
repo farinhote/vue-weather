@@ -15,8 +15,12 @@
         </div>
         <div class="cell sunrise-set">
           <img src="@/assets/secondary/sunrise.svg" loading="lazy" />
-          <div class="sunrise-label">Sunrise: {{ getHour(secondary.sunrise) }}</div>
-          <div class="sunset-label">Sunset: {{ getHour(secondary.sunset) }}</div>
+          <div class="sunrise-label">
+            Sunrise: {{ getHour(secondary.sunrise) }}
+          </div>
+          <div class="sunset-label">
+            Sunset: {{ getHour(secondary.sunset) }}
+          </div>
         </div>
         <div class="cell humidity">
           <img src="@/assets/secondary/humidity.svg" loading="lazy" />
@@ -24,7 +28,9 @@
         </div>
         <div class="cell pressure">
           <img src="@/assets/secondary/barometer.svg" loading="lazy" />
-          <div class="pressure-label">Pressure: {{ secondary.pressure }}hPa</div>
+          <div class="pressure-label">
+            Pressure: {{ secondary.pressure }}hPa
+          </div>
         </div>
       </div>
     </div>
@@ -53,6 +59,9 @@ export default {
 .secondary {
   @include super-center();
   @include side-by-side();
+
+  grid-gap: 3rem;
+  padding-top: 4rem;
 }
 
 .cell {
@@ -70,8 +79,9 @@ input {
 }
 
 @media (max-width: 1080px) {
-  .cell {
-    grid-gap: 2rem;
+  .secondary {
+    grid-gap: 1rem;
+    padding-top: 0;
   }
 
   label {

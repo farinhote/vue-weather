@@ -17,7 +17,7 @@ export default {
 .background {
   @include underlay();
 
-  transition: background-color 3s ease-in;
+  transition: background-color 1500ms ease-in;
   background-color: $secondary-color;
 }
 </style>
