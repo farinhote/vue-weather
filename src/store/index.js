@@ -31,6 +31,10 @@ export default new Vuex.Store({
         feelsLike
       };
       state.look = weatherStateHelper[icon];
+
+      if (!state.filter) {
+        state.filter = name;
+      }
     },
     setSecondaryWeather(state, { main, sys, wind }) {
       const { humidity, pressure } = main;
