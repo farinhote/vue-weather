@@ -37,15 +37,15 @@ export default new Vuex.Store({
         state.filter = name;
       }
     },
-    setSecondaryWeather(state, { main, sys, wind }) {
+    setSecondaryWeather(state, { main, sys, wind, timezone }) {
       const { humidity, pressure } = main;
       const { sunrise, sunset } = sys;
 
       state.secondary = {
         humidity,
         pressure,
-        sunrise,
-        sunset,
+        sunrise: sunrise + timezone,
+        sunset: sunset + timezone,
         wind
       };
     },
@@ -86,6 +86,7 @@ export default new Vuex.Store({
             coord,
             weather,
             sys,
+            timezone,
             wind
           } = response;
           // Store actions are async by default
@@ -94,7 +95,7 @@ export default new Vuex.Store({
           this.dispatch('getHistorical', { lat, lon });
 
           commit("setMainWeather", [name, main, weather[0]]);
-          commit("setSecondaryWeather", { main, sys, wind });
+          commit("setSecondaryWeather", { main, sys, wind, timezone });
         })
         .catch((error) => {
           commit("setInvalidLocation");
