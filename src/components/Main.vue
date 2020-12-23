@@ -8,11 +8,15 @@
     <div class="min-max">
       <div class="min">
         <div class="title">Min</div>
-        <div class="temperature">{{ convertTemp(main.tempMin, undefined, 0) }}</div>
+        <div class="temperature">
+          {{ convertTemp(main.tempMin, undefined, 0) }}
+        </div>
       </div>
       <div class="max">
         <div class="title">Max</div>
-        <div class="temperature">{{ convertTemp(main.tempMax, undefined, 0) }}</div>
+        <div class="temperature">
+          {{ convertTemp(main.tempMax, undefined, 0) }}
+        </div>
       </div>
     </div>
     <div class="current">
@@ -88,7 +92,8 @@ img {
   }
 }
 
-.title, .temperature {
+.title,
+.temperature {
   @include super-center();
 }
 </style>

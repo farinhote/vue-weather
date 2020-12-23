@@ -11,13 +11,12 @@
 </template>
 
 <script>
-
 import CardList from "@/components/CardList.vue";
 
 export default {
   name: "Additional",
   components: {
-    CardList
+    CardList,
   },
 
   computed: {
@@ -27,9 +26,9 @@ export default {
     history() {
       return this.$store.state.history;
     },
-    historyInitializable(){
-      return this.history.filter(day => day).length === 5;
-    }
+    historyInitializable() {
+      return this.history.filter((day) => day).length === 5;
+    },
   },
 };
 </script>

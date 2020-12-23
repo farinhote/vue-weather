@@ -28,7 +28,7 @@ export default {
     Secondary,
     LocationInput,
     Additional,
-    Background
+    Background,
   },
 
   created: function () {

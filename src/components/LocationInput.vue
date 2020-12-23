@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { debounce } from "@/helpers/debouncer.js"
+import { debounce } from "@/helpers/debouncer.js";
 
 export default {
   name: "LocationInput",
@@ -21,7 +21,7 @@ export default {
   methods: {
     filterChange: debounce(function () {
       this.$store.dispatch("getWeather", {
-        q: this.filter
+        q: this.filter,
       });
     }, 500),
   },
